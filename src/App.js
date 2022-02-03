@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { TaskList } from "./components/TaskList";
+import { AddTask } from "./components/AddTask";
+
+import { useState } from "react";
 
 function App() {
+  // Colocamos o state da lista de task no componente pai, para que ele possa ser utilizado por ambos os filhos desse componente.
+  const [taskList, setTaskList] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <AddTask data={taskList} setData={setTaskList} />
+      {/* O App.js não tem acesso ao state interno do componente TaskList. Maaaaas, eu posso passar o state do app para o componente TaskList */}
+      {/* Podemos passar o state do App para a TaskList usando props*/}
+      <TaskList
+        taskListForRender={taskList}
+        setTaskListForRender={setTaskList}
+      />
+    </>
   );
 }
 
