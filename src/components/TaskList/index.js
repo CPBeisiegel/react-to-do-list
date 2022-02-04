@@ -1,5 +1,7 @@
 import "./styles.css";
 
+import { Link } from "react-router-dom";
+
 export function TaskList(props) {
   function handleButton(taskToEdit) {
     const mappedArray = props.taskListForRender.map((currentTask) => {
@@ -23,12 +25,14 @@ export function TaskList(props) {
           <li className={currentTask.status ? "isTrue" : "isFalse"}>
             <p>{currentTask.task}</p>
             <span>{currentTask.when}</span>
+            <Link to={`/task/${currentTask.task}`}>Link</Link>
             <button
               onClick={() => {
                 handleButton(currentTask);
               }}
             >
               {currentTask.status ? "Desmarcar" : "Marcar com concluida"}
+
             </button>
           </li>
         );
